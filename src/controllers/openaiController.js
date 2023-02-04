@@ -1,28 +1,34 @@
-const { Configuration, OpenAIApi } = require("openai");
+const axios = require("axios")
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY+'',
-});
+const getEmotionsFromSentence = async (text) => {
 
-const openai = new OpenAIApi(configuration);
-
-const getEmotionsFromSentence = async(text)=>{
-
-    const response = await openai.createCompletion("text-davinci-003", {
-        prompt: `Given list of emotions and a sentence, tell me the emotion of the sentence from the given list. Gererate 3 best possible classifications. Generate only the response keywords, don't generate any other text. Keep the output characters in lowercase.\n\nList of emotions: [admiration, adoration, appreciation of beauty, amusement, anger, anxiety, awe, awkwardness, boredom, calmness, confusion, craving, disgust, empathic pain, entrancement, excitement, fear, horror, interest, joy, nostalgia, relief, sadness, satisfaction, and surprise]\n\nSentence: ${text}`,
-        temperature: 0.23,
-        max_tokens: 256,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
+    var data = JSON.stringify({
+        "model": "text-davinci-003",
+        "prompt": "Given list of emotions and a sentence, tell me the emotion of the sentence from the given list. Gererate 3 best possible classifications. Generate only the response keywords, don't generate any other text. Keep the output characters in lowercase.\n\nList of emotions: [admiration, adoration, appreciation of beauty, amusement, anger, anxiety, awe, awkwardness, boredom, calmness, confusion, craving, disgust, empathic pain, entrancement, excitement, fear, horror, interest, joy, nostalgia, relief, sadness, satisfaction, and surprise]\n\nSentence:"+text,
+        "temperature": 0.7,
+        "max_tokens": 350,
+        "top_p": 1,
+        "frequency_penalty": 0,
+        "presence_penalty": 0
     });
 
-    console.log("LOOK");
-    console.log(response.data.choices[0].text)
+    var config = {
+        method: 'post',
+        url: 'https://api.openai.com/v1/completions',
+        headers: {
+            'Authorization': 'Bearer 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',
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
 
-    return response.data.choices[0].text
+    var res = await axios(config)
 
+    var emotions = res.data.choices[0].text.split(",")
+
+    emotions[0] = (emotions[0]+"").replaceAll("\n","")
+
+    return emotions
 }
-getEmotionsFromSentence()
 
 export default getEmotionsFromSentence;
