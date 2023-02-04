@@ -36,7 +36,7 @@ export default function Home() {
           {error && <p className={`error shadow-border`}>{`Error: ${error}`}</p>}
           </div>
           <div>
-            <Link href="/users/0">Profile</Link>
+            <Link href="/users/0" >Profile</Link>
           </div>
         </div>
 
