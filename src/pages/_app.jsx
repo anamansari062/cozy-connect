@@ -53,7 +53,7 @@ if (typeof window !== "undefined") {
 function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
-    <div suppressHydrationWarning className="bg-tertiary w-full flex flex-col h-screen overflow-hidden h-screen place-items-center">
+    <div suppressHydrationWarning className=" bg-pease w-full flex flex-col h-screen overflow-hidden h-screen place-items-center bg-peace">
       <NextProgress/>
       {typeof window !== "undefined" && client && (
         <WagmiConfig client={client}>

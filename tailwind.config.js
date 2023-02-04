@@ -14,9 +14,12 @@ module.exports = {
             colors: {
                 'primary': '#a5f3fc',
                 'secondary': '#11379f',
-                'tertiary': '#a5f3fc',
+                'tertiary': '#93c5fd',
                 'quaternary': '#0D0E18',
             },
+            backgroundImage: {
+                'peace': "url('/img/bg-image.png')",
+            }
         },
     },
     daisyui: {

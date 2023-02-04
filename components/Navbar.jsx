@@ -50,7 +50,7 @@ const Navbar = (props) => {
   });
 
   return (
-    <div id="navbar" className="navbar sticky top-0 z-50 text-tertiary">
+    <div id="navbar" className="navbar sticky top-0 z-50 text-tertiary m-50">
       <div className="navbar-end">
         <button
           onClick={() => {
