@@ -1,5 +1,6 @@
 import AppProvider from "@/../context/AppContext";
-import "@/styles/globals.css";
+import 'tailwindcss/tailwind.css'
+import '@/styles/globals.css'
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
@@ -47,10 +48,12 @@ if (typeof window !== "undefined") {
   });
 }
 
+
+
 function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
-    <div suppressHydrationWarning >
+    <div suppressHydrationWarning className="bg-tertiary w-full flex flex-col h-screen overflow-hidden h-screen place-items-center">
       <NextProgress/>
       {typeof window !== "undefined" && client && (
         <WagmiConfig client={client}>

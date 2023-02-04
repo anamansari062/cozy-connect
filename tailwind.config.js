@@ -12,9 +12,9 @@ module.exports = {
                 'raleway': ['Raleway', 'sans-serif'],
             },
             colors: {
-                'primary': '#9ca3af',
-                'secondary': '# 489 BF1 ',
-                'tertiary': '#2EEF95',
+                'primary': '#a5f3fc',
+                'secondary': '#11379f',
+                'tertiary': '#a5f3fc',
                 'quaternary': '#0D0E18',
             },
         },
