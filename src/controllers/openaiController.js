@@ -1,10 +1,10 @@
 const axios = require("axios")
 
-const getEmotionsFromSentence = async (text) => {
+const getEmotionsFromSentence = async(text) => {
 
     var data = JSON.stringify({
         "model": "text-davinci-003",
-        "prompt": "Given list of emotions and a sentence, tell me the emotion of the sentence from the given list. Gererate 3 best possible classifications. Generate only the response keywords, don't generate any other text. Keep the output characters in lowercase.\n\nList of emotions: [admiration, adoration, appreciation of beauty, amusement, anger, anxiety, awe, awkwardness, boredom, calmness, confusion, craving, disgust, empathic pain, entrancement, excitement, fear, horror, interest, joy, nostalgia, relief, sadness, satisfaction, and surprise]\n\nSentence:"+text,
+        "prompt": "Given list of emotions and a sentence, tell me the emotion of the sentence from the given list. Gererate 3 best possible classifications. Generate only the response keywords, don't generate any other text. Keep the output characters in lowercase.\n\nList of emotions: [admiration, adoration, appreciation of beauty, amusement, anger, anxiety, awe, awkwardness, boredom, calmness, confusion, craving, disgust, empathic pain, entrancement, excitement, fear, horror, interest, joy, nostalgia, relief, sadness, satisfaction, and surprise]\n\nSentence:" + text,
         "temperature": 0.7,
         "max_tokens": 350,
         "top_p": 1,
@@ -26,7 +26,7 @@ const getEmotionsFromSentence = async (text) => {
 
     var emotions = res.data.choices[0].text.split(",")
 
-    emotions[0] = (emotions[0]+"").replaceAll("\n","")
+    emotions[0] = (emotions[0] + "").replaceAll("\n", "")
 
     return emotions
 }
