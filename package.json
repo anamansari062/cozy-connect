@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@huddle01/huddle01-client": "^0.0.10",
     "@next/font": "13.1.6",
     "@nextui-org/react": "^1.0.0-beta.12",
     "axios": "^1.3.2",
