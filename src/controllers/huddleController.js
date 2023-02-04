@@ -6,7 +6,7 @@ import {
 // import PeerVideoAudioElem from "../../components/PeerVideoAudioElem";
 // import MeVideoElem from "../../components/MeVideoElem";
 
-const huddleClient = getHuddleClient("58464e10c43b6db20610a6634f6b4ab8f0ae0860239a1255b6e80735dca2b69e");
+const huddleClient = getHuddleClient(process.env.HUDDLE_KEY);
 const peersKeys = useHuddleStore((state) => Object.keys(state.peers));
 const lobbyPeers = useHuddleStore((state) => state.lobbyPeers);
 const roomState = useHuddleStore((state) => state.roomState);
