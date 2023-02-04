@@ -4,8 +4,7 @@ import styles from '@/styles/Home.module.css'
 import { AppContext } from "@/../context/AppContext"
 import { useContext } from "react";
 import { Textarea, Grid, useInput, Spacer, Button } from "@nextui-org/react";
-
-
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,6 +34,9 @@ export default function Home() {
             </button>
           )}
           {error && <p className={`error shadow-border`}>{`Error: ${error}`}</p>}
+          </div>
+          <div>
+            <Link href="/users/0">Profile</Link>
           </div>
         </div>
 
