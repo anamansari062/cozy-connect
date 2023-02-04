@@ -3,7 +3,8 @@ import { Inter, Tenor_Sans } from '@next/font/google'
 import { useContext, useState } from "react";
 import { Textarea, Grid, useInput, Spacer, Button } from "@nextui-org/react";
 import Link from 'next/link'
-import getEmotionsFromSentence from '@/controllers/openaiController'
+import getEmotionsFromSentence from 'controllers/openaiController'
+import VideoChat from 'components/VideoChat';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -19,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h2 >*Add Video Screen Here*</h2>
+        <VideoChat id={"dev"} />
         <Spacer y={2}/>
         <div >
            <Textarea 
