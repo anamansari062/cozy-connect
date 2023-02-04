@@ -31,9 +31,9 @@ function VideoChat(id) {
 
   return (
     <HuddleClientProvider value={huddleClient}>
-      <div className="App grid grid-cols-2">
-        <div>
-            <h2 className={`text-${!roomState.joined ? "red" : "green"}`}>
+      <div className="App grid grid-cols-2 ">
+        <div className="grid v-screen place-items-center">
+            <h2 className="grid v-screen place-items-center">
                 Room Joined:&nbsp;{roomState.joined.toString()}
             </h2>
             <div> 

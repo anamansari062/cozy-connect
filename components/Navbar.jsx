@@ -30,7 +30,7 @@ const Navbar = (props) => {
     },
   });
   const { connect } = useConnect({
-    chainId: 31415,
+    chainId: 997,
     connector: new InjectedConnector(),
     onSuccess() {
       toast.success("Account connected!", {
@@ -51,60 +51,7 @@ const Navbar = (props) => {
 
   return (
     <div id="navbar" className="navbar sticky top-0 z-50 text-tertiary">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 bg-quaternary"
-          >
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/user">User</Link>
-            </li>
-          </ul>
-        </div>
-      </div>
       <div className="navbar-end">
-        <div className="flex space-x-8 mr-8 text-lg">
-          <Link
-            href="/"
-            id="create"
-            className="hidden md:block relative before:content-[''] before:absolute before:block before:w-full before:h-[1px] 
-              before:bottom-0 before:left-0 before:bg-tertiary
-              before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
-              before:transition before:ease-in-out before:duration-300
-              active:after:content-[''] active:after:absolute active:after:block active:after:w-full active:after:h-[1px]"
-          >
-            Home
-          </Link>
-          <Link
-            href="/user"
-            className="hidden md:block relative before:content-[''] before:absolute before:block before:w-full before:h-[1px] 
-              before:bottom-0 before:left-0 before:bg-tertiary
-              before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
-              before:transition before:ease-in-out before:duration-300"
-          >
-            User
-          </Link>
-        </div>
         <button
           onClick={() => {
             if (isConnected) {

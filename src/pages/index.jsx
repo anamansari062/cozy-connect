@@ -1,5 +1,6 @@
-import Head from "next/head";
-import { Inter, Tenor_Sans } from "@next/font/google";
+import Head from 'next/head'
+import 'tailwindcss/tailwind.css'
+import { Inter, Tenor_Sans } from '@next/font/google'
 import { useContext, useState } from "react";
 import { Textarea, Grid, useInput, Spacer, Button } from "@nextui-org/react";
 import Link from "next/link";
@@ -41,19 +42,19 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div>
       <Head>
         <title>Video Chat</title>
         <meta name="description" content="Video Call Application" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <VideoChat id={"dev"} />
 
-        <Spacer y={2} />
-        <div>
-          <Textarea
+      <main className='grid v-screen place-items-center bg-tertiary w-full flex flex-col h-screen overflow-hidden'>
+        <VideoChat id={"dev"} className="grid v-screen place-items-center"/>
+        <Spacer y={2}/>
+        <div className='grid v-screen place-items-center'>
+           <Textarea 
             minRows={10}
             maxRows={12}
             width={800}
@@ -64,7 +65,7 @@ export default function Home() {
             onChange={(e) => setThoughts(e.target.value)}
           />
           <Spacer y={0.5} />
-          <div className="relative inline-block px-4 py-2 font-medium group ">
+          <div className="relative inline-block px-4 py-2 font-medium group grid v-screen place-items-center ">
             <button
               className="relative inline-block px-4 py-2 font-medium group "
               onClick={async () => {
@@ -83,6 +84,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
