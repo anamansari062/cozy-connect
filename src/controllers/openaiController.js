@@ -28,6 +28,8 @@ const getEmotionsFromSentence = async(text) => {
 
     emotions[0] = (emotions[0] + "").replaceAll("\n", "")
 
+    // console.log(emotions)
+
     return emotions
 }
 

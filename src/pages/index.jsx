@@ -1,13 +1,15 @@
 import Head from 'next/head'
 import { Inter, Tenor_Sans } from '@next/font/google'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Textarea, Grid, useInput, Spacer, Button } from "@nextui-org/react";
 import Link from 'next/link'
+import getEmotionsFromSentence from '@/controllers/openaiController'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [thoughts, setThoughts] = useState("");
   return (
     <>
       <Head>
@@ -27,11 +29,18 @@ export default function Home() {
             labelPlaceholder="Write your thoughts and feelings" 
             size="xl"
             color="success"
+            id="thoughts"
+            onChange={e => setThoughts(e.target.value)}
             />
             <Spacer y={0.5} />
             <div  className="relative inline-block px-4 py-2 font-medium group ">
               <button
                 className="relative inline-block px-4 py-2 font-medium group "
+                onClick={async () => {
+                  await getEmotionsFromSentence(
+                    thoughts
+                  );
+                }}
               >
                 <span className="absolute rounded-lg inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-tertiary border-[2px] border-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                 <span className="absolute rounded-lg inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-tertiary"></span>
