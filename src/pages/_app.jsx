@@ -8,6 +8,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import NextProgress from "next-progress";
 
 
+
 const fireChain = {
   id: 997,
   name: "5ireChain",
@@ -53,7 +54,7 @@ if (typeof window !== "undefined") {
 function MyApp({ Component, pageProps }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
-    <div suppressHydrationWarning className=" bg-pease w-full flex flex-col h-screen overflow-hidden h-screen place-items-center bg-peace">
+    <div suppressHydrationWarning className=" bg-peace w-full flex flex-col h-screen overflow-hidden h-screen place-items-center bg-peace">
       <NextProgress/>
       {typeof window !== "undefined" && client && (
         <WagmiConfig client={client}>

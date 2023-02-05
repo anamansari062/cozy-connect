@@ -6,11 +6,9 @@ import { Textarea, Grid, useInput, Spacer, Button } from "@nextui-org/react";
 import Link from "next/link";
 import getEmotionsFromSentence from "controllers/openaiController";
 import VideoChat from "components/VideoChat";
-import { ethers } from "ethers";
-import ABI from "../../contracts/abi.json";
+
 import { Text } from "@nextui-org/react";
 
-const contractAddress = "0x2BA5f008CD1Eedc9836f89b4f64d036668B0D816";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,31 +17,7 @@ export default function Home() {
   const [emotions, setEmotions] = useState();
 
 
-  const provider = new ethers.providers.JsonRpcProvider(
-    "https://chain-node.5ire.network"
-  );
-
-  const wallet = new ethers.Wallet(
-    "0x2188eca5e482056749f8c5615a2245d6f8cf127b64aa85374f80533756675ee4",
-    provider
-  );
-
-  async function claim() {
-    console.log("This function work");
-    console.log(wallet.address);
-    const contractInstance = new ethers.Contract(contractAddress, ABI, wallet);
-    console.log("Minting!!");
-    try {
-      const tx = await contractInstance
-        .mint("0x4aB65FEb7Dc1644Cabe45e00e918815D3acbFa0a", 1, 1, "0x00")
-        .then((res) => {
-          alert("NFT Minted");
-          console.log(res);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  
 
   const getEmotions = async() => {
   const emotions = await getEmotionsFromSentence(thoughts);
@@ -59,8 +33,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='bg-peace grid v-screen place-items-center w-screen overflow-hidden'
-      >
+      <div className=" bg-[url('/public/bg-1.jpeg')] grid v-screen place-items-center w-screen overflow-hidden">
         <Text
           h1
           size={60}

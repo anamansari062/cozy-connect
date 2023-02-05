@@ -17,9 +17,7 @@ module.exports = {
                 'tertiary': '#93c5fd',
                 'quaternary': '#0D0E18',
             },
-            backgroundImage: {
-                'peace': "url('/img/bg-image.png')",
-            }
+
         },
     },
     daisyui: {
