@@ -6,7 +6,7 @@ import {
 import { useHuddleStore } from "@huddle01/huddle01-client/store";
 import PeerVideoAudioElem from "../components/PeerVideoAudioElem";
 import MeVideoElem from "../components/MeVideoElem";
-import { Button, Grid } from "@nextui-org/react";
+import { Button, Grid, Spacer } from "@nextui-org/react";
 import { useState } from "react";
 import { Text } from "@nextui-org/react";
 import { ethers } from "ethers";
@@ -77,43 +77,57 @@ function VideoChat(id) {
 
   return (
     <HuddleClientProvider value={huddleClient}>
-      <div className="App grid grid-cols-2 ">
+      <div className="grid v-screen place-items-center">
         <div className="grid v-screen place-items-center">
           { claimNFT? 
-            <Button onClick={claim}>
-              ClaimNFT
-            </Button>
+            <div className="grid v-screen place-items-center">
+              <Text color="#93c5fd">
+                Your rewards for this Video Session are here!
+              </Text>
+              <Button onClick={claim}>
+                ClaimNFT
+              </Button>
+            </div>
             :
           
           <div>
 
             { !callStatus ?
             <div>
+              <Text color="#93c5fd">
+                We have found your tribe!
+              </Text>
               <Button color="gradient" auto onClick={handleJoin}>
-                Start Call
+                Enter Call
               </Button>
             </div>
             :
             <div>
               <div> 
-                  <MeVideoElem />
+                  <div className="gr">
+                    <MeVideoElem />
 
-                  <div>
-                      {lobbyPeers.map((peer) => (
-                      <div>{peer.peerId}</div>
-                      ))}
-                  </div>
+                    <Spacer y={0.5}></Spacer>
+                    <Text color="#93c5fd">
+                      Your Tribe:
+                    </Text>
 
-                  {peersKeys[0] && <h2>Peers</h2>}
+                    <div>
+                        {lobbyPeers.map((peer) => (
+                        <div>{peer.peerId}</div>
+                        ))}
+                    </div>
 
-                  <div className="peers-grid">
-                      {peersKeys.map((key) => (
-                      <PeerVideoAudioElem key={`peerId-${key}`} peerIdAtIndex={key} />
-                      ))}
+
+                    <div className="peers-grid">
+                        {peersKeys.map((key) => (
+                        <PeerVideoAudioElem key={`peerId-${key}`} peerIdAtIndex={key} />
+                        ))}
+                    </div>
                   </div>
               </div>   
 
-              <div className="card">
+              <div className="grid v-screen place-items-center">
                 
                   { (webcam)? 
                   <Button color="gradient" auto onClick={() => {{
