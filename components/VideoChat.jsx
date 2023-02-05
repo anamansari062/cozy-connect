@@ -10,36 +10,37 @@ import { Button, Grid } from "@nextui-org/react";
 import { useState } from "react";
 import { Text } from "@nextui-org/react";
 import { ethers } from "ethers";
+import { Spacer } from "@nextui-org/react";
 import ABI from "../contracts/abi.json";
 
 const contractAddress = "0x2BA5f008CD1Eedc9836f89b4f64d036668B0D816";
 
-
-
 function VideoChat(id) {
-  const huddleClient = getHuddleClient("58464e10c43b6db20610a6634f6b4ab8f0ae0860239a1255b6e80735dca2b69e");
+  const huddleClient = getHuddleClient(
+    "58464e10c43b6db20610a6634f6b4ab8f0ae0860239a1255b6e80735dca2b69e"
+  );
   const peersKeys = useHuddleStore((state) => Object.keys(state.peers));
   const lobbyPeers = useHuddleStore((state) => state.lobbyPeers);
   const roomState = useHuddleStore((state) => state.roomState);
   const recordingState = useHuddleStore((state) => state.recordingState);
   const recordings = useHuddleStore((state) => state.recordings);
   const [webcam, setWebcam] = useState(false);
-  const [ callStatus, setCallStatus ] = useState(false);
+  const [callStatus, setCallStatus] = useState(false);
   const [claimNFT, setClaimNFT] = useState(false);
+
+  const [buttonText, setButtonText] = useState("Claim NFT");
 
   const handleJoin = async () => {
     try {
-      await huddleClient.join(id, {
-        address: "0x15900c698ee356E6976e5645394F027F0704c8Eb",
-        wallet: "",
-        ens: "axit.eth",
-      }).then(
-      (res) => {
-      setCallStatus(true)
-
-      }
-      )
-      
+      await huddleClient
+        .join(id, {
+          address: "0x15900c698ee356E6976e5645394F027F0704c8Eb",
+          wallet: "",
+          ens: "axit.eth",
+        })
+        .then((res) => {
+          setCallStatus(true);
+        });
 
       console.log("joined");
     } catch (error) {
@@ -73,79 +74,93 @@ function VideoChat(id) {
     }
   }
 
-
-
   return (
     <HuddleClientProvider value={huddleClient}>
       <div className="App grid grid-cols-2 ">
         <div className="grid v-screen place-items-center">
-          { claimNFT? 
-            <Button onClick={claim}>
-              ClaimNFT
-            </Button>
-            :
-          
-          <div>
-
-            { !callStatus ?
-            <div>
-              <Button color="gradient" auto onClick={handleJoin}>
-                Start Call
-              </Button>
+          {claimNFT ? (
+            <div className="grid v-screen place-items-center">
+              <Text color="#93c5fd">
+                Your rewards for this Video Session are here!
+              </Text>
+              <Button onClick={claim}>Claim NFT</Button>
             </div>
-            :
+          ) : (
             <div>
-              <div> 
-                  <MeVideoElem />
-
+              {!callStatus ? (
+                <div className="grid v-screen place-items-center">
+                  <Text color="#93c5fd">We have found your tribe!</Text>
+                  <Button color="gradient" auto onClick={handleJoin}>
+                    Start Call
+                  </Button>
+                </div>
+              ) : (
+                <div>
                   <div>
+                    <MeVideoElem />
+
+                    <div>
                       {lobbyPeers.map((peer) => (
-                      <div>{peer.peerId}</div>
+                        <div>{peer.peerId}</div>
                       ))}
-                  </div>
+                    </div>
 
-                  {peersKeys[0] && <h2>Peers</h2>}
+                    <Spacer y={0.5}></Spacer>
+                    <Text color="#93c5fd">Your Tribe:</Text>
 
-                  <div className="peers-grid">
+                    <div className="peers-grid">
                       {peersKeys.map((key) => (
-                      <PeerVideoAudioElem key={`peerId-${key}`} peerIdAtIndex={key} />
+                        <PeerVideoAudioElem
+                          key={`peerId-${key}`}
+                          peerIdAtIndex={key}
+                        />
                       ))}
+                    </div>
                   </div>
-              </div>   
 
-              <div className="card">
-                
-                  { (webcam)? 
-                  <Button color="gradient" auto onClick={() => {{
-                    setWebcam(true);
-                    huddleClient.enableWebcam()
-                  }}}>
-                    Enable Webcam
-                  </Button> 
-                  :
-                    <Button color="gradient" auto onClick={() => {
-                      setWebcam(false);
-                      huddleClient.disableWebcam()
-                    }}>
-                    Disable Webcam
-                  </Button>
-                  }
-                  <Button color="warning" 
-                  onClick={() => {{
-                    huddleClient.close()
-                    setClaimNFT(true);
-                  }}}
-                  >
-                    Leave Call
-                  </Button>
-                  
-                  
-              </div>
+                  <div className="card">
+                    {webcam ? (
+                      <Button
+                        color="gradient"
+                        auto
+                        onClick={() => {
+                          {
+                            setWebcam(true);
+                            huddleClient.enableWebcam();
+                          }
+                        }}
+                      >
+                        Enable Webcam
+                      </Button>
+                    ) : (
+                      <Button
+                        color="gradient"
+                        auto
+                        onClick={() => {
+                          setWebcam(false);
+                          huddleClient.disableWebcam();
+                        }}
+                      >
+                        Disable Webcam
+                      </Button>
+                    )}
+                    <Button
+                      color="warning"
+                      onClick={() => {
+                        {
+                          huddleClient.close();
+                          setClaimNFT(true);
+                        }
+                      }}
+                    >
+                      Leave Call
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
-            }
+          )}
         </div>
-}
-      </div>
       </div>
     </HuddleClientProvider>
   );
