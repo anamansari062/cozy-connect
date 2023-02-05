@@ -48,7 +48,7 @@ export default function Home() {
            Find your tribe, talk with people who share common grounds.
         </Text>
         <Spacer y={5}/>
-        { emotions && <VideoChat id={"dev"} className="grid v-screen place-items-center"/> }
+        { emotions && <VideoChat id={emotions[0]} className="grid v-screen place-items-center"/> }
         { !emotions &&  <div className='grid v-screen place-items-center'>
            <Textarea 
             minRows={10}
