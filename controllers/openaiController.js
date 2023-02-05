@@ -11,12 +11,11 @@ const getEmotionsFromSentence = async(text) => {
         "frequency_penalty": 0,
         "presence_penalty": 0
     });
-
     var config = {
         method: 'post',
         url: 'https://api.openai.com/v1/completions',
         headers: {
-            'Authorization': 'Bearer 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',
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
             'Content-Type': 'application/json'
         },
         data: data
@@ -28,7 +27,7 @@ const getEmotionsFromSentence = async(text) => {
 
     emotions[0] = (emotions[0] + "").replaceAll("\n", "")
 
-    // console.log(emotions)
+    console.log(emotions)
 
     return emotions
 }
