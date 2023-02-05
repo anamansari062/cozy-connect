@@ -16,6 +16,11 @@ We used multiple tech stacks and protocols which include
 - Postman
 - 5ire Chain
 
+## Demo Video
+Click on the video to go to see the demo of our project 
+[Demo Video](https://youtu.be/CEV4KmtEKno)
+
+
 ## Challenges we ran into
 
 - 5ire chain was a new ecosystem to study and because not having enough dev tools around it, interacting with the chain was troublesome.
