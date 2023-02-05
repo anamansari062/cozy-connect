@@ -13,6 +13,7 @@ We used multiple tech stacks and protocols which include
 - Huddle01
 - OpenAI
 - Wagmi library
+- Postman
 - 5ire Chain
 
 ## Challenges we ran into
